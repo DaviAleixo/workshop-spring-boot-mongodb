@@ -1,6 +1,7 @@
 package com.davialeixo.workshopmongodb.resources;
 
 import com.davialeixo.workshopmongodb.domain.User;
+import com.davialeixo.workshopmongodb.dto.UserDTO;
 import com.davialeixo.workshopmongodb.services.UserService;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/users")
@@ -24,8 +26,9 @@ public class UserResources {
     private final UserService service;
 
     @GetMapping
-    public ResponseEntity <List<User> >findAll () {
+    public ResponseEntity <List<UserDTO> >findAll () {
         List<User> list = service.findAll();
-        return ResponseEntity.ok().body(list);
+        List<UserDTO> listDto = list.stream().map(x -> new UserDTO(x)).collect(Collectors.toList());
+        return ResponseEntity.ok().body(listDto);
     }
 }
