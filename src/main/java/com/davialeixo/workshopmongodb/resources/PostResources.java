@@ -1,10 +1,7 @@
 package com.davialeixo.workshopmongodb.resources;
 
 import com.davialeixo.workshopmongodb.domain.Post;
-import com.davialeixo.workshopmongodb.domain.User;
-import com.davialeixo.workshopmongodb.dto.UserDTO;
 import com.davialeixo.workshopmongodb.services.PostService;
-import com.davialeixo.workshopmongodb.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
