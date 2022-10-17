@@ -6,6 +6,8 @@ import com.davialeixo.workshopmongodb.services.exception.ObjectNotFoundException
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class PostService {
@@ -15,6 +17,10 @@ public class PostService {
         return repo.findById(id)
                 .orElseThrow(() ->
                         new ObjectNotFoundException("Objeto não encontrado"));
+    }
+
+    public List<Post> findByTitle (String text){
+        return repo.findByTitleContainingIgnoreCase(text);
     }
 
 
