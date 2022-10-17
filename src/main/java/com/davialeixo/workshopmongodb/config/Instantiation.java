@@ -2,6 +2,7 @@ package com.davialeixo.workshopmongodb.config;
 
 import com.davialeixo.workshopmongodb.domain.Post;
 import com.davialeixo.workshopmongodb.domain.User;
+import com.davialeixo.workshopmongodb.dto.AuthorDTO;
 import com.davialeixo.workshopmongodb.repositories.PostRepository;
 import com.davialeixo.workshopmongodb.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -31,19 +32,21 @@ public class Instantiation implements CommandLineRunner {
         User alex = new User(null, "Alex Green", "alex@gmail.com");
         User bob = new User(null, "Bob Grey", "bob@gmail.com");
 
+        userRepository.saveAll(Arrays.asList(maria, alex, bob));
+
+
         Post post1 = new Post(null,
                 sdf.parse("21/03/2018")
                 ,"Partiu viagem!"
                 ,"Vou viajar para Sao Paulo. Abraços!"
-        ,maria);
+                , new AuthorDTO(maria));
 
         Post post2 = new Post(null,
                 sdf.parse("23/03/2018")
                 ,"Bom dia!"
                 ,"Acordei feliz hoje!"
-        ,maria);
+        ,new AuthorDTO(maria));
 
-        userRepository.saveAll(Arrays.asList(maria, alex, bob));
         postRepository.saveAll(Arrays.asList(post1, post2));
 
     }
